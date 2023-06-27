@@ -10,14 +10,12 @@ class Loggers_Base:
         logging.basicConfig(level=logging.INFO)
         logger_.setLevel('INFO')
         conn_str = (f'InstrumentationKey={os.environ["APPINSIGHTS_INSTRUMENTATIONKEY"]}')
-        '''
+
         logger_.addHandler(    
         AzureLogHandler(
             connection_string=conn_str,
             export_interval=1,  # Small interval to make sure all metrics are exported
             logging_sampling_rate=1))  # Highest possible sampling rate to be safe
-
-        '''            
 
         logger_: logging.Logger = logger_
         return logger_
