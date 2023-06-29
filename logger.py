@@ -3,7 +3,7 @@ import logging
 
 class Loggers_Base:
     '''
-    Logging Class for initialize the logging into Azure Application Insights
+    Base class for logger to app insights
     '''
     def initialize_logger(self, name=None):
         
@@ -14,8 +14,8 @@ class Loggers_Base:
         logger_.addHandler(    
         AzureLogHandler(
             connection_string=conn_str,
-            export_interval=1,  # Small interval to make sure all metrics are exported
-            logging_sampling_rate=1))  # Highest possible sampling rate to be safe
+            export_interval=1,  
+            logging_sampling_rate=1))  
 
         logger_: logging.Logger = logger_
         return logger_
@@ -23,7 +23,7 @@ class Loggers_Base:
 
 class Loggers_Decorators:
     '''
-    Class for a decorator for logging
+    Concrete implementation for logging decorator
     '''
     def __init__(self, logger_):
         self.logger_ = logger_
