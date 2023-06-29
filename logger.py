@@ -19,3 +19,12 @@ class Loggers_Base:
 
         logger_: logging.Logger = logger_
         return logger_
+
+
+class Loggers_Decorators:
+    '''
+    Class for a decorator for logging
+    '''
+    def __init__(self, logger_):
+        self.logger_ = logger_
+
