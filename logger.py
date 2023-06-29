@@ -9,7 +9,7 @@ class Loggers_Base:
         
         logging.basicConfig(level=logging.INFO)
         logger_.setLevel('INFO')
-        conn_str = (f'InstrumentationKey={os.environ["APPINSIGHTS_INSTRUMENTATIONKEY"]}')
+        conn_str = (f'InstrumentationKey={os.environ["XXX"]}') # Environmental Variable
 
         logger_.addHandler(    
         AzureLogHandler(
