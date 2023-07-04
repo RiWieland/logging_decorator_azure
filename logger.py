@@ -1,5 +1,6 @@
 import os
 import logging
+import functools
 
 class Logger_Base:
     '''
@@ -27,11 +28,14 @@ class Logger_Decorators:
     '''
     def __init__(self, logger_):
         self.logger_ = logger_
-
-    def wrapper(*args, **kwargs):
-        args_repr = [repr(a) for a in args]
-        kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
-        signature = ", ".join(args_repr + kwargs_repr)
-        self.logger_.info(f"function {func.__name__} called with args {signature}")
-        result = func(*args, **kwargs)
-        return result
+       
+    def decorator(func):
+        @functools.wraps(func)
+        def wrapper(*args, **kwargs):
+            args_repr = [repr(a) for a in args]
+            kwargs_repr = [f"{k}={v!r}" for k, v in kwargs.items()]
+            signature = ", ".join(args_repr + kwargs_repr)
+            self.logger_.info(f"function {func.__name__} called with args {signature}")
+            result = func(*args, **kwargs)
+            return result
+        return decorator
