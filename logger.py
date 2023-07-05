@@ -7,8 +7,11 @@ class Logger_Base:
     Base class for logger to app insights
     '''
     def initialize_logger(self, name=None):
-        
         logging.basicConfig(level=logging.INFO)
+        if name==None:
+            logger_ = logging.getLogger(self.__class__.__name__)
+        else:
+            logger_ = logging.getLogger(name)
         logger_.setLevel('INFO')
         conn_str = (f'InstrumentationKey={os.environ["XXX"]}') # Environmental Variable
 
