@@ -49,3 +49,7 @@ class Logger_Decorators:
                     self.logger_.exception(f"Exception raised in function {func.__name__}. Exception: {str(e)}")
                     self.logger_.warning(f"function {func.__name__} called with args {signature} and thrown an error {str(e)}")
             return decorator
+
+app_logger = Loggers_Base()
+app_logger = app_logger.initialize_logger()
+log_decorator = Loggers_Decorators(app_logger)
