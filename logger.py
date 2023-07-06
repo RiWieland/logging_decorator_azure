@@ -2,6 +2,8 @@ import os
 import logging
 import functools
 
+from opencensus.ext.azure.log_exporter import AzureLogHandler
+
 class Logger_Base:
     '''
     Base class for logger to app insights
@@ -13,7 +15,7 @@ class Logger_Base:
         else:
             logger_ = logging.getLogger(name)
         logger_.setLevel('INFO')
-        conn_str = (f'InstrumentationKey={os.environ["XXX"]}') # Environmental Variable
+        conn_str = (f'InstrumentationKey={os.environ["APPINSIGHT_KEY"]}') # Environmental Variable
 
         logger_.addHandler(    
         AzureLogHandler(
